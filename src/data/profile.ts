@@ -32,7 +32,7 @@ export const stats = [
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Languages', items: ['C#', 'TypeScript', 'JavaScript', 'SQL', 'C', 'C++'] },
   { group: 'Frontend', items: ['React', 'Redux Toolkit', 'MUI', 'AngularJS', 'HTML', 'CSS / SCSS'] },
-  { group: 'Backend & Data', items: ['.NET', 'ASP.NET Core', 'REST APIs', 'JWT Auth', 'Dapper', 'PostgreSQL', 'Oracle', 'SQL', 'JSON / JSONB'] },
+  { group: 'Backend & Data', items: ['.NET', 'ASP.NET Core', 'REST APIs', 'JWT Auth', 'Dapper', 'PostgreSQL', 'Oracle', 'JSON / JSONB'] },
   { group: 'GIS & Tools', items: ['ArcGIS JS API', 'ArcGIS Pro SDK', 'MVVM', 'Git', 'Checkmarx', 'IIS'] },
 ];
 
