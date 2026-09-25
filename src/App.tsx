@@ -6,11 +6,13 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import { profile } from './data/profile';
+import { useLang } from './i18n';
 
 export default function App() {
+  const { t, tr } = useLang();
   return (
     <>
-      <a className="skip-link" href="#about">Skip to content</a>
+      <a className="skip-link" href="#about">{t.skip}</a>
       <div className="bg-grid" aria-hidden="true" />
       <Nav />
       <main className="container">
@@ -22,7 +24,7 @@ export default function App() {
         <Contact />
       </main>
       <footer className="footer mono small muted">
-        Built with React + TypeScript + Vite · © {new Date().getFullYear()} {profile.name}
+        {t.builtWith} · © {new Date().getFullYear()} {tr(profile.displayName)}
       </footer>
     </>
   );

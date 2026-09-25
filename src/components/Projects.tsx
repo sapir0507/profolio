@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Section from './Section';
 import { featured, profile, hiddenRepos } from '../data/profile';
 import { ArrowIcon, GitHubIcon, StarIcon } from './Icons';
+import { useLang } from '../i18n';
 
 type Repo = {
   id: number;
@@ -28,6 +29,7 @@ const langColor: Record<string, string> = {
 export default function Projects() {
   const [repos, setRepos] = useState<Repo[] | null>(null);
   const [failed, setFailed] = useState(false);
+  const { t, tx } = useLang();
 
   useEffect(() => {
     const ctrl = new AbortController();
@@ -50,37 +52,37 @@ export default function Projects() {
   }, []);
 
   return (
-    <Section id="projects" index="04" title="Things I've built">
+    <Section id="projects" index="04" title={t.projectsTitle}>
       <p className="muted section-lead">
-        Highlights from production work. Client code is private, so these describe the systems rather than link to them.
+        {t.projectsLead}
       </p>
       <div className="projects-grid">
         {featured.map((p) => (
           <article key={p.name} className="card project">
-            <p className="mono small accent">{p.tag}</p>
-            <h3 className="project-name">{p.name}</h3>
-            <p className="muted">{p.description}</p>
+            <p className="mono small accent" dir="ltr">{p.tag}</p>
+            <h3 className="project-name" dir="ltr">{p.name}</h3>
+            <p className="muted">{tx(p.description)}</p>
             <ul className="stack mono">
               {p.stack.map((s) => (
-                <li key={s}>{s}</li>
+                <li key={s} dir="ltr">{s}</li>
               ))}
             </ul>
           </article>
         ))}
       </div>
 
-      <h3 className="subhead mono">
+      <h3 className="subhead mono" dir="ltr">
         <span className="accent">$</span> git log --public
       </h3>
-      {!repos && !failed && <p className="muted mono small">fetching repositories…</p>}
+      {!repos && !failed && <p className="muted mono small">{t.fetchingRepos}</p>}
       {failed && (
         <p className="muted">
-          Couldn’t load repositories right now —{' '}
-          <a href={profile.github} target="_blank" rel="noreferrer">browse them on GitHub</a>.
+          {t.reposFailed}{' '}
+          <a href={profile.github} target="_blank" rel="noreferrer">{t.reposFailedLink}</a>.
         </p>
       )}
       {repos && repos.length === 0 && (
-        <p className="muted">Public repositories coming soon.</p>
+        <p className="muted">{t.reposEmpty}</p>
       )}
       {repos && repos.length > 0 && (
         <div className="repos-grid">
@@ -91,7 +93,7 @@ export default function Projects() {
                 <span className="repo-name mono">{r.name}</span>
                 <ArrowIcon />
               </div>
-              <p className="muted small">{r.description || 'No description yet.'}</p>
+              <p className="muted small repo-desc" dir={r.description ? 'auto' : undefined}>{r.description || t.noDescription}</p>
               <div className="repo-meta mono small muted">
                 {r.language && (
                   <span>
@@ -111,7 +113,7 @@ export default function Projects() {
       )}
       <p className="center">
         <a className="btn" href={profile.github} target="_blank" rel="noreferrer">
-          <GitHubIcon size={18} /> View all on GitHub
+          <GitHubIcon size={18} /> {t.viewAllGithub}
         </a>
       </p>
     </Section>
