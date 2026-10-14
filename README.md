@@ -2,7 +2,7 @@
 
 Personal portfolio site built with **React + TypeScript + Vite**, deployed to **GitHub Pages** via GitHub Actions.
 
-**Live:** https://sapir0507.github.io
+**Live:** https://sapir0507.github.io/profolio/
 
 ## Features
 
